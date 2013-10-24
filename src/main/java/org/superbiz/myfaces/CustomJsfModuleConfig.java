@@ -18,18 +18,18 @@
  */
 package org.superbiz.myfaces;
 
-import org.apache.myfaces.extensions.cdi.jsf.api.config.JsfModuleConfig;
+import org.os890.cdi.ext.scope.jsf.impl.config.ConfigEntryAwareJsfModuleConfig;
 
 import javax.enterprise.inject.Specializes;
 
 @Specializes
-public class CustomJsfModuleConfig extends JsfModuleConfig
+public class CustomJsfModuleConfig extends ConfigEntryAwareJsfModuleConfig
 {
     private static final long serialVersionUID = 1682809983274206270L;
 
     @Override
-    public boolean isInvalidValueAwareMessageInterpolatorEnabled()
+    public boolean isInitialRedirectEnabled()
     {
-        return false;
+        return true;
     }
 }

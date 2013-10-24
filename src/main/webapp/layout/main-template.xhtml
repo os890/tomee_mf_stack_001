@@ -43,7 +43,7 @@
                 <div id="top_menu">
                     <div id="top_menu_container">
                         <h:panelGroup rendered="#{infoBean.infoPage}">
-                            <div class="date">Apache TomEE/MyFaces-Stack <b>Demo-App</b> #{infoBean.applicationVersion}</div>
+                            <div class="date">Apache TomEE/DS-MyFaces-Stack <b>Demo-App</b> #{infoBean.applicationVersion}</div>
                         </h:panelGroup>
                         <div id="projectStage" class="date">[#{infoBean.projectStage}]</div>
                         <ul>
@@ -131,7 +131,7 @@
             </div>
             <div class="clear"></div>
         </div>
-        <p:growl sticky="false"/>
+        <p:growl sticky="false" showSummary="true" showDetail="false"/>
         <div id="footer">
             <div class="copyright">
                 <p>&#169; The Apache Software Foundation

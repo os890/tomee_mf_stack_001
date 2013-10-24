@@ -18,9 +18,9 @@
  */
 package org.superbiz.myfaces.view;
 
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.Conversation;
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
-import org.apache.myfaces.extensions.cdi.jsf.api.config.view.PreRenderView;
+import org.apache.deltaspike.core.api.config.view.controller.PreRenderView;
+import org.os890.cdi.ext.scope.api.scope.conversation.Conversation;
+import org.os890.cdi.ext.scope.api.scope.conversation.ViewAccessScoped;
 import org.superbiz.myfaces.domain.Feedback;
 import org.superbiz.myfaces.repository.FeedbackRepository;
 

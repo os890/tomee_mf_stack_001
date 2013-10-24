@@ -18,8 +18,8 @@
  */
 package org.superbiz.myfaces;
 
-import org.apache.myfaces.extensions.cdi.core.api.projectstage.ProjectStage;
-import org.apache.myfaces.extensions.cdi.core.api.projectstage.ProjectStageHolder;
+import org.apache.deltaspike.core.api.projectstage.ProjectStage;
+import org.apache.deltaspike.core.api.projectstage.ProjectStageHolder;
 
 public class CustomProjectStage implements ProjectStageHolder
 {

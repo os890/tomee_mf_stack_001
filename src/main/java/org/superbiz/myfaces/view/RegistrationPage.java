@@ -18,12 +18,12 @@
  */
 package org.superbiz.myfaces.view;
 
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.Conversation;
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.ViewAccessScoped;
-import org.apache.myfaces.extensions.cdi.jsf.api.Jsf;
-import org.apache.myfaces.extensions.cdi.message.api.MessageContext;
+import org.apache.deltaspike.jsf.api.message.JsfMessage;
 import org.apache.myfaces.extensions.validator.beanval.annotation.BeanValidation;
 import org.apache.myfaces.extensions.validator.crossval.annotation.Equals;
+import org.os890.cdi.ext.scope.api.scope.conversation.Conversation;
+import org.os890.cdi.ext.scope.api.scope.conversation.ViewAccessScoped;
+import org.superbiz.myfaces.WebappMessageBundle;
 import org.superbiz.myfaces.domain.User;
 import org.superbiz.myfaces.domain.validation.Full;
 import org.superbiz.myfaces.repository.UserRepository;
@@ -32,8 +32,6 @@ import org.superbiz.myfaces.view.config.Pages;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
-
-import static org.apache.myfaces.extensions.cdi.message.api.payload.MessageSeverity.ERROR;
 
 @Named
 @ViewAccessScoped
@@ -48,7 +46,7 @@ public class RegistrationPage implements Serializable
     private Conversation conversation;
 
     @Inject
-    private @Jsf MessageContext messageContext;
+    private JsfMessage<WebappMessageBundle> webappMessages;
 
     private User user = new User();
 
@@ -62,10 +60,7 @@ public class RegistrationPage implements Serializable
     public Class<? extends Pages> register()
     {
         this.userRepository.save(this.user);
-        this.messageContext.message()
-                .text("{msgUserRegistered}")
-                .namedArgument("userName", this.user.getUserName())
-                .add();
+        this.webappMessages.addInfo().msgUserRegistered(this.user.getUserName());
 
         //in order to re-use the page-bean for the login-page
         this.conversation.close();
@@ -78,12 +73,12 @@ public class RegistrationPage implements Serializable
         User user = this.userRepository.loadUser(this.user.getUserName());
         if (user != null && user.getPassword().equals(this.user.getPassword()))
         {
-            this.messageContext.message().text("{msgLoginSuccessful}").add();
+            this.webappMessages.addInfo().msgLoginSuccessful();
             this.userHolder.setCurrentUser(user);
             return Pages.About.class;
         }
 
-        this.messageContext.message().text("{msgLoginFailed}").payload(ERROR).add();
+        this.webappMessages.addError().msgLoginFailed();
 
         return null;
     }

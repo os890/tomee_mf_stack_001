@@ -18,15 +18,13 @@
  */
 package org.superbiz.myfaces.view.security;
 
-import org.apache.myfaces.extensions.cdi.core.api.security.AbstractAccessDecisionVoter;
-import org.apache.myfaces.extensions.cdi.core.api.security.SecurityViolation;
-import org.apache.myfaces.extensions.cdi.jsf.api.Jsf;
-import org.apache.myfaces.extensions.cdi.message.api.MessageContext;
+import org.apache.deltaspike.security.api.authorization.AccessDecisionVoterContext;
+import org.apache.deltaspike.security.api.authorization.SecurityViolation;
+import org.superbiz.myfaces.WebappMessageBundle;
 import org.superbiz.myfaces.view.UserHolder;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.interceptor.InvocationContext;
 import java.util.Set;
 
 @ApplicationScoped
@@ -38,15 +36,15 @@ public class LoginAccessDecisionVoter extends AbstractAccessDecisionVoter
     private UserHolder userHolder;
 
     @Inject
-    @Jsf
-    private MessageContext messageContext;
+    private WebappMessageBundle webappMessageBundle;
 
     @Override
-    protected void checkPermission(InvocationContext invocationContext, Set<SecurityViolation> violations)
+    protected void checkPermission(AccessDecisionVoterContext accessDecisionVoterContext,
+                                   Set<SecurityViolation> violations)
     {
         if (!this.userHolder.isLoggedIn())
         {
-            violations.add(newSecurityViolation(this.messageContext.message().text("{msgAccessDenied}").toText()));
+            violations.add(newSecurityViolation(this.webappMessageBundle.msgAccessDenied()));
         }
     }
 }

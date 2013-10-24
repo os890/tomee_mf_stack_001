@@ -18,27 +18,23 @@
  */
 package org.superbiz.myfaces;
 
-import org.apache.myfaces.extensions.cdi.core.api.Advanced;
-import org.apache.myfaces.extensions.cdi.core.api.activation.ProjectStageActivated;
-import org.apache.myfaces.extensions.cdi.core.api.logging.Logger;
-import org.apache.myfaces.extensions.cdi.core.api.projectstage.ProjectStage;
-import org.apache.myfaces.extensions.cdi.jsf.api.listener.phase.JsfPhaseListener;
+import org.apache.deltaspike.core.api.exclude.Exclude;
+import org.apache.deltaspike.core.api.projectstage.ProjectStage;
+import org.apache.deltaspike.jsf.api.listener.phase.JsfPhaseListener;
 
 import javax.faces.event.PhaseEvent;
 import javax.faces.event.PhaseId;
 import javax.faces.event.PhaseListener;
-import javax.inject.Inject;
+import java.util.logging.Logger;
 
-@ProjectStageActivated({ProjectStage.Development.class, CustomProjectStage.Debugging.class})
+@Exclude(exceptIfProjectStage = {ProjectStage.Development.class, CustomProjectStage.Debugging.class})
 
-@Advanced
 @JsfPhaseListener
 public class DebugPhaseListener implements PhaseListener
 {
     private static final long serialVersionUID = 5899542118538949019L;
 
-    @Inject
-    private Logger logger;
+    private Logger logger = Logger.getLogger(Logger.class.getName());
 
     public void beforePhase(PhaseEvent phaseEvent)
     {

@@ -18,7 +18,7 @@
  */
 package org.superbiz.myfaces.view;
 
-import org.apache.myfaces.extensions.cdi.core.api.scope.conversation.WindowContext;
+import org.os890.cdi.ext.scope.api.scope.conversation.WindowContext;
 import org.superbiz.myfaces.view.config.Pages;
 
 import javax.enterprise.inject.Model;

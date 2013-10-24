@@ -18,7 +18,7 @@
  */
 package org.superbiz.myfaces.repository;
 
-import org.apache.myfaces.extensions.cdi.jpa.api.Transactional;
+import org.apache.deltaspike.jpa.api.transaction.Transactional;
 
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Stereotype;

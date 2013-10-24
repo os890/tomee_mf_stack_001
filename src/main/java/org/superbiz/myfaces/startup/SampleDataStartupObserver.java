@@ -18,8 +18,8 @@
  */
 package org.superbiz.myfaces.startup;
 
-import org.apache.myfaces.extensions.cdi.core.api.activation.ProjectStageActivated;
-import org.apache.myfaces.extensions.cdi.core.api.startup.event.StartupEvent;
+import org.apache.deltaspike.core.api.exclude.Exclude;
+import org.os890.cdi.ext.common.startup.event.StartupEvent;
 import org.superbiz.myfaces.domain.User;
 import org.superbiz.myfaces.repository.UserRepository;
 
@@ -29,11 +29,11 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-import static org.apache.myfaces.extensions.cdi.core.api.projectstage.ProjectStage.Development;
-import static org.apache.myfaces.extensions.cdi.core.api.projectstage.ProjectStage.IntegrationTest;
+import static org.apache.deltaspike.core.api.projectstage.ProjectStage.Development;
+import static org.apache.deltaspike.core.api.projectstage.ProjectStage.IntegrationTest;
 
 //e.g. via the std. JSF project-stage or CODI project-stage org.apache.myfaces.extensions.cdi.ProjectStage=Development
-@ProjectStageActivated({Development.class, IntegrationTest.class})
+@Exclude(exceptIfProjectStage = {Development.class, IntegrationTest.class})
 @ApplicationScoped
 public class SampleDataStartupObserver
 {

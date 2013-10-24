@@ -18,34 +18,34 @@
  */
 package org.superbiz.myfaces.view.config;
 
-import org.apache.myfaces.extensions.cdi.core.api.config.view.DefaultErrorView;
-import org.apache.myfaces.extensions.cdi.core.api.config.view.ViewConfig;
-import org.apache.myfaces.extensions.cdi.core.api.security.Secured;
-import org.apache.myfaces.extensions.cdi.jsf.api.config.view.Page;
-import org.apache.myfaces.extensions.cdi.jsf.api.config.view.PageBean;
+import org.apache.deltaspike.core.api.config.view.DefaultErrorView;
+import org.apache.deltaspike.core.api.config.view.ViewConfig;
+import org.apache.deltaspike.core.api.config.view.controller.ViewControllerRef;
+import org.apache.deltaspike.jsf.api.config.view.View;
+import org.apache.deltaspike.security.api.authorization.Secured;
 import org.superbiz.myfaces.view.FeedbackPage;
 import org.superbiz.myfaces.view.InfoPage;
 import org.superbiz.myfaces.view.security.LoginAccessDecisionVoter;
 
-import static org.apache.myfaces.extensions.cdi.jsf.api.config.view.Page.NavigationMode.REDIRECT;
+import static org.apache.deltaspike.jsf.api.config.view.View.NavigationMode.REDIRECT;
 
-@Page(navigation = REDIRECT)
+@View(navigation = REDIRECT)
 public interface Pages extends ViewConfig
 {
-    @Page class Index implements Pages {}
+    class Index implements Pages {}
 
-    @InfoPage @Page class About implements Pages {}
+    @InfoPage class About implements Pages {}
 
-    @Page class Registration implements Pages {}
+    class Registration implements Pages {}
 
-    @Page class Login extends DefaultErrorView implements Pages /*just to benefit from the config*/ {}
+    class Login extends DefaultErrorView implements Pages /*just to benefit from the config*/ {}
 
     @Secured(LoginAccessDecisionVoter.class)
     //@Secured(value = LoginAccessDecisionVoter.class, errorView = Login.class)
     interface Secure extends Pages
     {
-        @PageBean(FeedbackPage.class)
-        @Page
+        @ViewControllerRef(FeedbackPage.class)
+        //optional: @View
         class FeedbackList implements Secure {}
     }
 }

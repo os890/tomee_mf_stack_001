@@ -23,4 +23,4 @@ Build and start the demo:
 
 Open:
 
-    http://localhost:8080/myfaces-stack001-1.0.0/
+    http://localhost:8080/ds-myfaces-stack001-1.0.0/

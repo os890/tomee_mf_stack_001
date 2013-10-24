@@ -18,15 +18,14 @@
  */
 package org.superbiz.myfaces.view.util;
 
-import org.apache.myfaces.extensions.cdi.core.api.CodiInformation;
-import org.apache.myfaces.extensions.cdi.core.api.projectstage.ProjectStage;
-import org.apache.myfaces.extensions.cdi.core.api.provider.BeanManagerProvider;
-import org.apache.myfaces.extensions.cdi.core.api.util.ClassUtils;
-import org.apache.myfaces.extensions.cdi.jsf.api.Jsf;
-import org.apache.myfaces.extensions.cdi.jsf.api.config.view.ViewConfigDescriptor;
-import org.apache.myfaces.extensions.cdi.jsf.api.config.view.ViewConfigResolver;
-import org.apache.myfaces.extensions.cdi.message.api.MessageContext;
+import org.apache.deltaspike.core.api.config.view.metadata.ViewConfigDescriptor;
+import org.apache.deltaspike.core.api.config.view.metadata.ViewConfigResolver;
+import org.apache.deltaspike.core.api.projectstage.ProjectStage;
+import org.apache.deltaspike.core.api.provider.BeanManagerProvider;
+import org.apache.deltaspike.jsf.api.message.JsfMessage;
 import org.apache.myfaces.extensions.validator.ExtValInformation;
+import org.apache.myfaces.extensions.validator.util.ClassUtils;
+import org.superbiz.myfaces.WebappMessageBundle;
 import org.superbiz.myfaces.view.InfoPage;
 
 import javax.annotation.PostConstruct;
@@ -38,6 +37,7 @@ import javax.persistence.Persistence;
 import javax.validation.Validation;
 import java.io.Serializable;
 
+@SuppressWarnings("CdiUnproxyableBeanTypesInspection")
 @Named
 @SessionScoped
 public class InfoBean implements Serializable
@@ -45,16 +45,13 @@ public class InfoBean implements Serializable
     private static final long serialVersionUID = -1748909261695527800L;
 
     @Inject
-    private @Jsf MessageContext messageContext;
+    private JsfMessage<WebappMessageBundle> webappMessages;
 
     @Inject
     private ProjectStage projectStage;
 
     @Inject
     private ViewConfigResolver viewConfigResolver;
-
-    @Inject
-    private FacesContext facesContext;
 
     private String applicationMessageVersionInfo;
 
@@ -80,14 +77,14 @@ public class InfoBean implements Serializable
 
         if (!ProjectStage.IntegrationTest.equals(this.projectStage))
         {
-            this.messageContext.message().text("{msgWelcome}").add();
+            this.webappMessages.addInfo().msgWelcome();
         }
     }
 
     public boolean isInfoPage()
     {
         ViewConfigDescriptor viewConfigDescriptor =
-                this.viewConfigResolver.getViewConfigDescriptor(this.facesContext.getViewRoot().getViewId());
+                this.viewConfigResolver.getViewConfigDescriptor(FacesContext.getCurrentInstance().getViewRoot().getViewId());
 
         if (viewConfigDescriptor == null)
         {
@@ -107,9 +104,9 @@ public class InfoBean implements Serializable
         return this.applicationMessageVersionInfo;
     }
 
-    public String getCodiVersion()
+    public String getDeltaSpikeVersion()
     {
-        return CodiInformation.VERSION;
+        return ClassUtils.getJarVersion(BeanManagerProvider.class);
     }
 
     public String getCdiVersion()

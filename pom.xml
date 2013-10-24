@@ -12,17 +12,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.superbiz</groupId>
-    <artifactId>myfaces-stack001</artifactId>
+    <artifactId>ds-myfaces-stack001</artifactId>
 
-    <name>OpenEJB :: Examples :: JSF2/CDI/BV/JPA/CODI</name>
+    <name>OpenEJB :: Examples :: JSF2/CDI/BV/JPA/DeltaSpike</name>
     <version>1.0.0</version>
 
     <packaging>war</packaging>
 
     <properties>
         <myfaces2.version>2.1.11</myfaces2.version>
-        <myfaces.codi.version>1.0.5</myfaces.codi.version>
+        <ds.version>0.5</ds.version>
+        <codi-scopes.version>1.0.5_0.5_01</codi-scopes.version>
         <extval.version>2.0.7</extval.version>
+        <owb.version>1.1.8</owb.version>
     </properties>
 
     <build>
@@ -61,9 +63,69 @@
         </dependency>
 
         <dependency>
-            <groupId>org.apache.myfaces.extensions.cdi.bundles</groupId>
-            <artifactId>myfaces-extcdi-bundle-jsf20</artifactId>
-            <version>${myfaces.codi.version}</version>
+            <groupId>org.apache.deltaspike.core</groupId>
+            <artifactId>deltaspike-core-api</artifactId>
+            <version>${ds.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.core</groupId>
+            <artifactId>deltaspike-core-impl</artifactId>
+            <version>${ds.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-jsf-module-api</artifactId>
+            <version>${ds.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-jsf-module-impl</artifactId>
+            <version>${ds.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-jpa-module-api</artifactId>
+            <version>${ds.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-jpa-module-impl</artifactId>
+            <version>${ds.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-security-module-api</artifactId>
+            <version>${ds.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-security-module-impl</artifactId>
+            <version>${ds.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-bean-validation-module-api</artifactId>
+            <version>${ds.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.deltaspike.modules</groupId>
+            <artifactId>deltaspike-bean-validation-module-impl</artifactId>
+            <version>${ds.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.os890.cdi.ext.scope.modules</groupId>
+            <artifactId>os890-cdi-ext-jsf2-module-api</artifactId>
+            <version>${codi-scopes.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.os890.cdi.ext.scope.modules</groupId>
+            <artifactId>os890-cdi-ext-jsf2-module-impl</artifactId>
+            <version>${codi-scopes.version}</version>
         </dependency>
 
         <dependency>
