@@ -18,11 +18,11 @@
  */
 package org.superbiz.myfaces.view;
 
+import org.apache.deltaspike.core.api.scope.GroupedConversation;
+import org.apache.deltaspike.core.api.scope.GroupedConversationScoped;
 import org.apache.deltaspike.jsf.api.message.JsfMessage;
 import org.apache.myfaces.extensions.validator.beanval.annotation.BeanValidation;
 import org.apache.myfaces.extensions.validator.crossval.annotation.Equals;
-import org.os890.cdi.ext.scope.api.scope.conversation.Conversation;
-import org.os890.cdi.ext.scope.api.scope.conversation.ViewAccessScoped;
 import org.superbiz.myfaces.WebappMessageBundle;
 import org.superbiz.myfaces.domain.User;
 import org.superbiz.myfaces.domain.validation.Full;
@@ -34,7 +34,7 @@ import javax.inject.Named;
 import java.io.Serializable;
 
 @Named
-@ViewAccessScoped
+@GroupedConversationScoped
 public class RegistrationPage implements Serializable
 {
     private static final long serialVersionUID = 3844502441069448490L;
@@ -43,7 +43,7 @@ public class RegistrationPage implements Serializable
     private UserRepository userRepository;
 
     @Inject
-    private Conversation conversation;
+    private GroupedConversation conversation;
 
     @Inject
     private JsfMessage<WebappMessageBundle> webappMessages;

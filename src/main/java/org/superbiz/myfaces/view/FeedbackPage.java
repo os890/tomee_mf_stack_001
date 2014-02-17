@@ -19,8 +19,8 @@
 package org.superbiz.myfaces.view;
 
 import org.apache.deltaspike.core.api.config.view.controller.PreRenderView;
-import org.os890.cdi.ext.scope.api.scope.conversation.Conversation;
-import org.os890.cdi.ext.scope.api.scope.conversation.ViewAccessScoped;
+import org.apache.deltaspike.core.api.scope.GroupedConversation;
+import org.apache.deltaspike.core.api.scope.GroupedConversationScoped;
 import org.superbiz.myfaces.domain.Feedback;
 import org.superbiz.myfaces.repository.FeedbackRepository;
 
@@ -31,7 +31,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Named
-@ViewAccessScoped
+@GroupedConversationScoped
 //alternative to @PageBean in the view-config:
 //@View(Pages.Secure.FeedbackList.class)
 public class FeedbackPage implements Serializable
@@ -41,7 +41,7 @@ public class FeedbackPage implements Serializable
     private List<Feedback> feedbackList;
 
     @Inject
-    private Conversation conversation;
+    private GroupedConversation conversation;
 
     @Inject
     private FeedbackRepository feedbackRepository;

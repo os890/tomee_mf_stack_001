@@ -18,6 +18,7 @@
  */
 package org.superbiz.myfaces.view.security;
 
+import org.apache.deltaspike.security.api.authorization.AbstractAccessDecisionVoter;
 import org.apache.deltaspike.security.api.authorization.AccessDecisionVoterContext;
 import org.apache.deltaspike.security.api.authorization.SecurityViolation;
 import org.superbiz.myfaces.WebappMessageBundle;

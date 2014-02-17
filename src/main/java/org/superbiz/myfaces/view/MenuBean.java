@@ -18,7 +18,8 @@
  */
 package org.superbiz.myfaces.view;
 
-import org.os890.cdi.ext.scope.api.scope.conversation.WindowContext;
+import org.apache.deltaspike.core.spi.scope.conversation.GroupedConversationManager;
+import org.apache.deltaspike.core.spi.scope.window.WindowContext;
 import org.superbiz.myfaces.view.config.Pages;
 
 import javax.enterprise.inject.Model;
@@ -28,37 +29,37 @@ import javax.inject.Inject;
 public class MenuBean
 {
     @Inject
-    private WindowContext windowContext;
+    private GroupedConversationManager groupedConversationManager;
 
     public Class<? extends Pages> home()
     {
         //close all conversations of the current window
-        this.windowContext.closeConversations();
+        this.groupedConversationManager.closeConversations();
         return Pages.Index.class;
     }
 
     public Class<? extends Pages.Secure> feedback()
     {
         //close all conversations of the current window
-        this.windowContext.closeConversations();
+        this.groupedConversationManager.closeConversations();
         return Pages.Secure.FeedbackList.class;
     }
 
     public Class<? extends Pages> about()
     {
-        this.windowContext.closeConversations();
+        this.groupedConversationManager.closeConversations();
         return Pages.About.class;
     }
 
     public Class<? extends Pages> login()
     {
-        this.windowContext.closeConversations();
+        this.groupedConversationManager.closeConversations();
         return Pages.Login.class;
     }
 
     public Class<? extends Pages> register()
     {
-        this.windowContext.closeConversations();
+        this.groupedConversationManager.closeConversations();
         return Pages.Registration.class;
     }
 }

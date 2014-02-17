@@ -20,9 +20,8 @@
     <packaging>war</packaging>
 
     <properties>
-        <myfaces2.version>2.1.11</myfaces2.version>
-        <ds.version>0.5</ds.version>
-        <codi-scopes.version>1.0.5_0.5_01</codi-scopes.version>
+        <myfaces2.version>2.1.13</myfaces2.version>
+        <ds.version>0.6-SNAPSHOT</ds.version>
         <extval.version>2.0.7</extval.version>
         <owb.version>1.1.8</owb.version>
     </properties>
@@ -116,16 +115,6 @@
             <artifactId>deltaspike-bean-validation-module-impl</artifactId>
             <version>${ds.version}</version>
             <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.os890.cdi.ext.scope.modules</groupId>
-            <artifactId>os890-cdi-ext-jsf2-module-api</artifactId>
-            <version>${codi-scopes.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.os890.cdi.ext.scope.modules</groupId>
-            <artifactId>os890-cdi-ext-jsf2-module-impl</artifactId>
-            <version>${codi-scopes.version}</version>
         </dependency>
 
         <dependency>

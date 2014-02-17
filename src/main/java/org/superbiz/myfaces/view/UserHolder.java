@@ -18,7 +18,7 @@
  */
 package org.superbiz.myfaces.view;
 
-import org.os890.cdi.ext.scope.api.scope.conversation.WindowScoped;
+import org.apache.deltaspike.core.api.scope.WindowScoped;
 import org.superbiz.myfaces.domain.User;
 
 import javax.enterprise.context.Dependent;
