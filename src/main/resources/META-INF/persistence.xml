@@ -30,12 +30,12 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
         <!-- config of (non-)jta-data-source isn't needed if there is just one -->
 
         <!-- @MappedSuperclass classes - see OPENJPA-1926 -->
-        <class>org.superbiz.myfaces.domain.AbstractDomainObject</class>
+        <class>org.superbiz.ds.domain.AbstractDomainObject</class>
 
         <!-- entities -->
-        <class>org.superbiz.myfaces.domain.User</class>
-        <class>org.superbiz.myfaces.domain.Feedback</class>
-        <class>org.superbiz.myfaces.domain.Comment</class>
+        <class>org.superbiz.ds.domain.User</class>
+        <class>org.superbiz.ds.domain.Feedback</class>
+        <class>org.superbiz.ds.domain.Comment</class>
 
         <properties>
             <property name="openjpa.DataCache" value="true"/>
