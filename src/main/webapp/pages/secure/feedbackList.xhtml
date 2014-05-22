@@ -26,7 +26,6 @@
    xmlns:ui="http://java.sun.com/jsf/facelets"
    xmlns:h="http://java.sun.com/jsf/html"
    xmlns:f="http://java.sun.com/jsf/core"
-   xmlns:p="http://primefaces.prime.com.tr/ui"
    template="/layout/main-template.xhtml">
 
     <ui:define name="content">
@@ -44,17 +43,16 @@
 
         <p/>
 
-        <p:dataTable var="entry" value="#{feedbackPage.feedbackList}" paginator="true" paginatorPosition="bottom"
-                     rows="10">
-            <p:column>
+        <h:dataTable var="entry" value="#{feedbackPage.feedbackList}">
+            <h:column>
                 <f:facet name="header"><h:outputText value="#{i18n.tblFeedbackTopic}"/></f:facet>
                 #{entry.topic}
-            </p:column>
-            <p:column>
+            </h:column>
+            <h:column>
                 <f:facet name="header"><h:outputText value="#{i18n.tblFeedbackDescription}"/></f:facet>
                 #{entry.description}
-            </p:column>
-        </p:dataTable>
+            </h:column>
+        </h:dataTable>
     </ui:define>
 
 </ui:composition>
