@@ -16,16 +16,27 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.superbiz.ds.repository.jpa;
+package org.superbiz.ds.service;
 
 import org.apache.deltaspike.jpa.api.transaction.Transactional;
-import org.superbiz.ds.domain.Feedback;
-import org.superbiz.ds.repository.FeedbackRepository;
-import org.superbiz.ds.repository.Repository;
 
+import javax.enterprise.context.RequestScoped;
+import javax.enterprise.inject.Stereotype;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.Target;
+
+import static java.lang.annotation.ElementType.TYPE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
+
+@Stereotype
+
+@Target({TYPE})
+@Retention(RUNTIME)
+@Documented
+
+@RequestScoped
 @Transactional
-@Repository
-public class JpaFeedbackRepository extends AbstractGenericJpaRepository<Feedback> implements FeedbackRepository
+public @interface DomainService
 {
-    private static final long serialVersionUID = -4140472572607337575L;
 }

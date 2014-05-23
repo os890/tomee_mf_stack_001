@@ -18,8 +18,6 @@
  */
 package org.superbiz.ds.repository;
 
-import org.apache.deltaspike.jpa.api.transaction.Transactional;
-
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Stereotype;
 import java.lang.annotation.Documented;
@@ -36,7 +34,6 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 
 @RequestScoped
-@Transactional
 public @interface Repository
 {
 }
